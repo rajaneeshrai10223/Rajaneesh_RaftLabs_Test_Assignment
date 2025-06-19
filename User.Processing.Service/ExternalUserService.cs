@@ -27,13 +27,58 @@ namespace User.Processing.Service
             return userData!;
         }
 
-        public async Task<IEnumerable<DataInfo>> GetAllUsersAsync()
+        public async Task<IEnumerable<DataInfoWithPaging>> GetAllUsersAsync()
         {
             var client = _httpClientFactoryService.CreateClientWithApiKey();
-            var response = await client.GetAsync($"{_host}/api/users");
+
+            List<DataInfoWithPaging> allUsersWithPaging = new();
+
+            int currentPage = 1;
+            int totalPages = 1;
+            do
+            {
+                var response = await client.GetAsync($"{_host}/api/users?page={totalPages}");
+                response.EnsureSuccessStatusCode();
+                var usersCollection = await response.Content.ReadFromJsonAsync<UsersCollection>();
+                if (usersCollection != null)
+                {
+                    DataInfoWithPaging usersWithPaging = new DataInfoWithPaging
+                    {
+                        Page = usersCollection.Page,
+                        PerPage = usersCollection.PerPage,
+                        TotalPages = usersCollection.TotalPages,
+                        Data = usersCollection.Data
+                    };
+                    allUsersWithPaging!.AddRange(usersWithPaging);
+
+                    totalPages = usersCollection.TotalPages;
+                    currentPage++;
+                    
+                    // If the current page is the last page, break the loop
+                    if (currentPage > totalPages)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (currentPage <= totalPages);
+
+            return allUsersWithPaging;
+        }
+
+        public async Task<IEnumerable<DataInfo>> GetAllUsersWithDelayAsync(int delay)
+        {
+            var client = _httpClientFactoryService.CreateClientWithApiKey();
+            var response = await client.GetAsync($"{_host}/api/users?delay={delay}");
             response.EnsureSuccessStatusCode();
             var usersCollection = await response.Content.ReadFromJsonAsync<UsersCollection>();
             return usersCollection?.Data ?? Enumerable.Empty<DataInfo>();
         }
+
+        
     }
 }

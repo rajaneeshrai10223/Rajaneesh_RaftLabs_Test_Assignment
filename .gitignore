@@ -1,0 +1,86 @@
+# .gitignore for .NET projects
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code settings
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Others
+*.vspscc
+*.vssscc
+*.pdb
+*.cache
+*.dbmdl
+*.bak
+*.swp
+*.tmp
+*.ncb
+*.sdf
+*.opensdf
+*.VC.db
+
+# Test results
+TestResults/
+
+# Configuration files
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+
+# Rider
+.idea/
+*.sln.iml
+
+# Ignore build output and NuGet artifacts
+*.nupkg
+*.snupkg
+*.nuspec
+*.dll
+*.exe
+*.mdb
+*.xml
+*.json
+*.csv
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+*.log
+*.vs/
+
+# Ignore Visual Studio and JetBrains Rider folders
+.vs/
+.idea/
+_ReSharper*/
+[Tt]est[Rr]esult*/
+
+# Ignore coverage reports
+coverage/
+*.coverage
+*.coveragexml
+
+# Ignore user secrets
+secrets.json
+User.Processing.Tests/obj/Debug/net9.0/User.Processing.Tests.AssemblyInfoInputs.cache
+User.Processing.Tests/obj/Debug/net9.0/User.Processing.Tests.GeneratedMSBuildEditorConfig.editorconfig
+User.Processing.Tests/obj/Debug/net9.0/User.Processing.Tests.AssemblyInfoInputs.cache
+User.Processing.Tests/obj/Debug/net9.0/User.Processing.Tests.assets.cache
+User.Processing.Tests/obj/Debug/net9.0/User.Processing.Tests.AssemblyInfoInputs.cache
+User.Processing.Tests/obj/Debug/net9.0/User.Processing.Tests.assets.cache
+User.Processing.Tests/obj/Debug/net9.0/User.Processing.Tests.GeneratedMSBuildEditorConfig.editorconfig
+User.Processing.Tests/obj/Debug/net9.0/User.Processing.Tests.GeneratedMSBuildEditorConfig.editorconfig
+User.Processing.Tests/obj/project.nuget.cache

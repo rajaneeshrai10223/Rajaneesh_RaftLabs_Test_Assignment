@@ -18,6 +18,12 @@ namespace User.Processing.API
                 var users = await userService.GetAllUsersAsync();
                 return Results.Ok(users);
             });
+
+            app.MapGet("/users/delay/{delay:int}", async (int delay, IExternalUserService userService) =>
+            {
+                var users = await userService.GetAllUsersWithDelayAsync(delay);
+                return Results.Ok(users);
+            });
         }
     }
 }
